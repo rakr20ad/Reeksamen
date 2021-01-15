@@ -91,7 +91,14 @@ router.post('/register', (req, res) => {
                     if(err) throw err; 
                     //her hasher vi vores password, krypterer det. 
                     newUser.password = hash; 
-                    //
+                    //Gemmer brugeren
+                    newUser.save()
+                    .then(user =>{
+                        //Her bruges en af de globale variabler 
+                        req.flash('success_msg', 'You are now succesfully registered!')
+                        res.redirect('/users/login');
+                    })
+                    .catch(err => console.log(err))
 
 
                 }))

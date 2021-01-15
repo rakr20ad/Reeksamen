@@ -1,6 +1,25 @@
 const express = require('express'); 
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
 
 const server = express(); 
+
+//Henter vi "nøglen til databasen"
+const db = require('./Authentication/databaseMongo').MongoURI;
+
+// Forbinder til to mongoDB og heraf benyttes mongoose 
+// Her skal man huske at tilføje "useUnifiedTopology: true"
+// Indeni tuborgklammerne, ellers brokker den sig
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('MongoDB is working...'))
+    .catch(err => console.log(err));
+
+//EJS middleware
+server.use(expressLayouts); 
+server.set('view engine', 'ejs');
+
+//Bodyparser
+server.use(express.urlencoded({ extended: false }))
 
 //Ruter
 server.use('/', require('./controller/index'))

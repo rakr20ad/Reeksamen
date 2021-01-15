@@ -1,6 +1,7 @@
 const express = require('express'); 
 const router = express.Router(); 
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
 
 const User = require('../Model/User')
 
@@ -107,4 +108,26 @@ router.post('/register', (req, res) => {
     }
 }); 
 
+//Log in handle 
+// Kilde: http://www.passportjs.org/docs/authenticate/
+// cmd f "custom callback" 
+// Det her styrer log ind funktionen. 
+// Og redirecter brugeren henholdsvis, hvis brugeren 
+// Logger ind med sin respektive kode eller laver en fejl
+router.post('/login', (req, res, next) =>{
+    passport.authenticate('local', {
+        successRedirect: '/homepage', 
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next); 
+    }); 
+
+
+// Logout handle (1:19:00 ish): logout er en indbygget funktion i express
+// Dette gør det samme som log ind bare for log ud
+router.get('/logout', (req, res) => {
+    req.logOut(); 
+    req.flash('success_msg', 'You are logged out, see you soon');
+    res.redirect('/users/login');
+});
 module.exports = router; 

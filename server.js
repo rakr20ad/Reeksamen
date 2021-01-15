@@ -5,8 +5,13 @@ const mongoose = require('mongoose');
 // Så skal man lave en middleware for det
 const flash = require('connect-flash');
 const session = require('express-session');
+// Passport er en godkendelses-middleware for node.js 
+const passport = require('passport');
 
 const server = express(); 
+
+//Passport 
+require('./Authentication/passport')(passport);
 
 //Henter vi "nøglen til databasen"
 const db = require('./Authentication/databaseMongo').MongoURI;
@@ -32,6 +37,11 @@ server.use(session({
     resave: true,
     saveUninitialized: true
   }));
+
+// Passport middleware.
+// Kilde: http://www.passportjs.org/docs/authenticate/
+server.use(passport.initialize());
+server.use(passport.session());
 
 // Middleware for connect flash: 
 // Efter vi har lavet middleware'n for express-session og connect flash 

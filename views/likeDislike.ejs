@@ -1,12 +1,12 @@
 <header class="header2" id="header2">            
     <div class="topnav">
         <a href="/homepage">Home</a>
-        <a href="/homepage/LikeDislike">likeDislike</a>
+        <a href="/homepage/LikeDislike">Swipe</a>
         <a href="/homepage/Matches">Matches</a>
         <a href="/homepage/Profile">Profile</a>
     </div>
-<style type="text/css">    
-.topnav {
+  <style type="text/css">    
+  .topnav {
   background-color: #8b0025;
   overflow: hidden;
   margin-bottom: 100px;
@@ -15,8 +15,8 @@
   position: fixed;
   left: 0;
   top: 0;
-}
-.topnav a {
+  }
+  .topnav a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -28,15 +28,17 @@
   border-right: 1px solid black;
   border-left: 1px solid black;
   box-sizing: border-box;
-}
-.topnav a:hover {
+  }
+  .topnav a:hover {
   background-color: #ddd;
   color: black;
-}
-</style>
-</header>
-<br>
-<br>
-<h1 class="mt-4">Home page</h1>
-<p class="lead mb-3">Welcome <%= name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+  }
+  </style>
+  </header>
+  <br>
+  <br>
+  <h1 class="mt-4"></h1>
+  <p class="lead mb-3"><%= name %>'s user</p>
+  <a href="#" class="btn btn-secondary">Like</a>
+  <a href="#" class="btn btn-secondary">Dislike</a>
+  

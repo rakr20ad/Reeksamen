@@ -8,7 +8,7 @@ const session = require('express-session');
 // Passport er en godkendelses-middleware for node.js 
 const passport = require('passport');
 
-const server = express(); 
+const server = express();
 
 //Passport 
 require('./Authentication/passport')(passport);
@@ -61,6 +61,7 @@ server.use(function(req, res, next){
 //Ruter
 server.use('/', require('./controller/index'))
 server.use('/users', require('./controller/users'))
+server.use('/homepage', require('./controller/index'))
 
 const PORT = process.env.PORT || 5000;
 

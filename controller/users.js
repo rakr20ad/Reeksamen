@@ -130,4 +130,39 @@ router.get('/logout', (req, res) => {
     req.flash('success_msg', 'You are logged out, see you soon');
     res.redirect('/users/login');
 });
+
+//Delete user
+// Denne funktion kan slette en bruger via postman 
+// Uden held at få funktionen til at blive connected
+// til delete my user NOW knappen
+router.delete('/delete-user/:id', ((req, res, next) => {
+    //var id = req.user.id;
+    User.findByIdAndRemove(req.params.id, (error, data) => {
+        if(error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: data
+            })
+            req.flash('success_msg', 'You have successfully deleted ur acc'); 
+            res.redirect('users/register')
+        }
+    })
+}))
+
+router.put('/update-user/:id', ((req, res, next) => {
+    //var id = req.user.id;
+    User.findByIdAndRemove(req.params.id, (error, data) => {
+        if(error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: data
+            })
+            req.flash('success_msg', 'You have successfully updated ur acc'); 
+            res.redirect('users/profile')
+        }
+    })
+}))
+
 module.exports = router; 

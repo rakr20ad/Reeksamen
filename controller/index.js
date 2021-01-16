@@ -9,7 +9,7 @@ router.get('/', function(req, res){
 
 //"Homepage" 
 router.get('/homepage', ensureAuthenticated, function(req, res){ 
-    res.render('Homepage', {
+    res.render('homepage', {
         name: req.user.name
     })
     });
